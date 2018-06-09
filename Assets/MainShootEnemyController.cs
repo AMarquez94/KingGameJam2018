@@ -30,6 +30,7 @@ public class MainShootEnemyController : MonoBehaviour {
             Vector3 dirToPlayer = playerPos.position - this.transform.position;
             GameObject bullet_go = Instantiate(bullet, this.transform.position + this.transform.forward * 0.1f,Quaternion.identity);
             bullet_go.transform.forward = dirToPlayer;
+            bullet_go.GetComponent<BulletController>().SetSender(this.gameObject);
             timerForAttack = 0.0f;
         }
 	}

@@ -47,7 +47,7 @@ public class LevelGenerator : MonoBehaviour {
                 instance.transform.SetParent(transform);
                 instance.SetActive(false);
 
-                Debug.Log("Spawned a tile");
+                //Debug.Log("Spawned a tile");
                 grid_objects.Last().Add(instance);
             }
         }

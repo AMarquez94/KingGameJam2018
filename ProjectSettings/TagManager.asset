@@ -10,6 +10,7 @@ TagManager:
   - LDoor
   - RDoor
   - Mutation
+  - Enemy
   layers:
   - Default
   - TransparentFX

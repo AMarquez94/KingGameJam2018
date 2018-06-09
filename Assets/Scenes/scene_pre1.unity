@@ -1208,7 +1208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid_size: {x: 10, y: 10}
   tile_size: {x: 15, y: 10}
-  actual_tile: {x: 0, y: 0}
   tile_prefab: {fileID: 1732130397987520, guid: 8887c567f48d922478fc87af2e7ac1ad,
     type: 2}
 --- !u!1 &1743694112
