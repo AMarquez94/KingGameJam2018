@@ -60,13 +60,13 @@ public class BulletController : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && sender.tag != "Player")
+        if (other.gameObject.tag == "Player" && sender != null && sender.tag != "Player")
         {
             /* Hit the player and destroy the bullet */
             other.gameObject.GetComponent<PlayerController>().ReceiveShot((int)damage);
             Destroy(this.gameObject);
         }
-        else if (other.gameObject.tag == "Enemy" && sender.tag != "Enemy")
+        else if (other.gameObject.tag == "Enemy" && sender != null && sender.tag != "Enemy")
         {
             /* Hit the enemy and destroy the bullet */
             other.gameObject.GetComponent<enemyController>().ReceiveShot((int)damage);

@@ -28,7 +28,12 @@ public class LevelGenerator : MonoBehaviour {
 
     private GameObject _start_tile;
     private GameObject _boss_tile;
-    public GameObject _current_tile;
+    private GameObject _current_tile;
+
+    public GameObject GetStartTile() { return _start_tile; }
+    public GameObject GetBossTile() { return _boss_tile; }
+    public GameObject GetCurrentTile() { return _current_tile; }
+
 
     private List<Vector2> _root_path;
 
@@ -183,7 +188,7 @@ public class LevelGenerator : MonoBehaviour {
         {
             for (int j = 0; j < grid_objects[i].Count; j++)
             {
-                grid_objects[i][j].GetComponent<RoomController>().InitRoom();
+                grid_objects[i][j].GetComponent<RoomController>().BuildRoom();
 
                 if (grid_objects[i][j] != _start_tile)
                     grid_objects[i][j].SetActive(false);
@@ -222,10 +227,12 @@ public class LevelGenerator : MonoBehaviour {
         // Teleport the player here to it's new tile.
         // Apply camera transition
 
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-       // player.transform.position = new Vector3(door.transform.position.x, transform.position.y - 2.5f, door.transform.position.z);
-       // player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
-       // Camera.main.transform.position = _current_tile.transform.position + camera_offset;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(door.transform.position.x, transform.position.y - 2.5f, door.transform.position.z);
+        player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
+        Camera.main.transform.position = _current_tile.transform.position + camera_offset;
+
+
     }
 
     public void GeneratePath()
