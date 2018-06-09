@@ -15,7 +15,7 @@ public class ChaseEnemyController : MonoBehaviour {
         {
             this.gameObject.AddComponent<enemyController>();
         }
-        
+        playerPos = GameControllerManager.getGameControllerManager().getPlayer().transform;
     }
 	
 	void Update () {

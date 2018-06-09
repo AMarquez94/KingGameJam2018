@@ -45,4 +45,10 @@ public class BulletController : MonoBehaviour {
         range = Mathf.Clamp(range + bulletMutation.bulletRangeModifier, minRange, maxRange);
     }
 
+    public void setVariables(float new_damage, float new_speed, float new_range)
+    {
+        damage = new_damage;
+        speed = new_speed;
+        range = new_range;
+    }
 }
