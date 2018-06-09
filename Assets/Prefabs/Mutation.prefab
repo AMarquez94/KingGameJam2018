@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1284245698976078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.97, z: 2.59}
+  m_LocalPosition: {x: -2.6820545, y: 1, z: 2.5611026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,9 +99,9 @@ MonoBehaviour:
   probabilityBad: 0.2
   probabilityUnknown: 0.6
   mutationType: 0
-  probabilityAll: 0.1
+  probabilityAll: 0.2
   probabilityOne: 0.4
-  probabilityTwo: 0.5
+  probabilityTwo: 0.4
   affectingType: 0
 --- !u!135 &135097719736167234
 SphereCollider:

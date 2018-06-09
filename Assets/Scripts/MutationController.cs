@@ -53,23 +53,12 @@ public class MutationController : MonoBehaviour {
         bulletMutation = new BulletMutation();
 
         #region --initProbabilities--
-        Vector3 probabilities = new Vector3(probabilityGood, probabilityBad, probabilityUnknown);
-        probabilities.Normalize();
-        probabilityGood = probabilities.x;
-        probabilityBad = probabilities.y;
-        probabilityUnknown = probabilities.z;
-
-        probabilities = new Vector3(probabilityAll, probabilityOne, probabilityTwo);
-        probabilities.Normalize();
-        probabilityAll = probabilities.x;
-        probabilityOne = probabilities.y;
-        probabilityTwo = probabilities.z;
 
         float value = Random.value;
         if (value <= probabilityGood)
         {
             mutationType = MutationType.GOOD;
-        } else if (value > probabilityGood && value < probabilityBad)
+        } else if (value > probabilityGood && value < probabilityGood + probabilityBad)
         {
             mutationType = MutationType.BAD;
         }
@@ -83,7 +72,7 @@ public class MutationController : MonoBehaviour {
         {
             affectingType = AffectingType.ALL;
         }
-        else if (value > probabilityAll && value < probabilityOne)
+        else if (value > probabilityAll && value < probabilityAll + probabilityOne)
         {
             affectingType = AffectingType.ONE;
         }
