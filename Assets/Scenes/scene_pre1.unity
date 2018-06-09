@@ -468,6 +468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid_size: {x: 6, y: 6}
-  tile_size: {x: 15, y: 10}
+  tile_size: {x: 16, y: 11}
   tile_prefab: {fileID: 1687239045548256, guid: 9ef600a16d5c35f41b066858ebe89406,
     type: 2}
