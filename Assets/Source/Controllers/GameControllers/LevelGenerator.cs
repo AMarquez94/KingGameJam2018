@@ -61,7 +61,6 @@ public class LevelGenerator : MonoBehaviour {
                 instance.transform.SetParent(transform);
                 instance.name = "Tile_" + i + "-" + j;
                 instance.GetComponent<RoomController>().grid_pos = new Vector2(i, j);
-                instance.SetActive(false);
 
                 grid_objects.Last().Add(instance);
             }
@@ -71,6 +70,7 @@ public class LevelGenerator : MonoBehaviour {
         SeedStart();
         GeneratePath();
         DisableDoors();
+        InitRooms();
     }
 
     // Method to determine if door is present on given side
@@ -124,7 +124,6 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        GameObject player_camera = GameObject.FindGameObjectWithTag("PlayerCamera");
         player.transform.position = _current_tile.transform.position;
         Camera.main.transform.position = _current_tile.transform.position + camera_offset;
         Debug.Log(player.transform.position);
@@ -136,7 +135,7 @@ public class LevelGenerator : MonoBehaviour {
         {
             for (int j = 0; j < grid_objects[i].Count; j++)
             {
-                if(!_root_path.Contains(new Vector2(i, j)))
+                if (!_root_path.Contains(new Vector2(i, j)))
                     grid_objects[i][j].SetActive(false);
             }
         }
@@ -150,30 +149,44 @@ public class LevelGenerator : MonoBehaviour {
                 if (i == n_pos.x && j == n_pos.y)
                     continue;
 
-                if (i > 0 && !grid_objects[i-1][j].activeSelf)
+                if (i > 0 && !grid_objects[i - 1][j].activeSelf)
                     grid_objects[i][j].transform.Find("Tile_LDoor").gameObject.SetActive(false);
 
-                if (j > 0 && !grid_objects[i][j-1].activeSelf)
+                if (j > 0 && !grid_objects[i][j - 1].activeSelf)
                     grid_objects[i][j].transform.Find("Tile_BDoor").gameObject.SetActive(false);
 
-                if ((i < grid_objects.Count - 1) && !grid_objects[i+1][j].activeSelf)
+                if ((i < grid_objects.Count - 1) && !grid_objects[i + 1][j].activeSelf)
                     grid_objects[i][j].transform.Find("Tile_RDoor").gameObject.SetActive(false);
 
-                if ((j < grid_objects[i].Count -1) && !grid_objects[i][j+1].activeSelf)
+                if ((j < grid_objects[i].Count - 1) && !grid_objects[i][j + 1].activeSelf)
                     grid_objects[i][j].transform.Find("Tile_TDoor").gameObject.SetActive(false);
 
 
                 if (i > 0 && (grid_objects[i - 1][j] == _start_tile || grid_objects[i - 1][j] == _boss_tile))
                     grid_objects[i][j].transform.Find("Tile_LDoor").gameObject.SetActive(false);
 
-                if (j > 0 && (grid_objects[i][j-1] == _start_tile || grid_objects[i][j-1] == _boss_tile))
+                if (j > 0 && (grid_objects[i][j - 1] == _start_tile || grid_objects[i][j - 1] == _boss_tile))
                     grid_objects[i][j].transform.Find("Tile_BDoor").gameObject.SetActive(false);
 
-                if ((i < grid_objects.Count - 1) && (grid_objects[i+1][j] == _start_tile || grid_objects[i+1][j] == _boss_tile))
+                if ((i < grid_objects.Count - 1) && (grid_objects[i + 1][j] == _start_tile || grid_objects[i + 1][j] == _boss_tile))
                     grid_objects[i][j].transform.Find("Tile_RDoor").gameObject.SetActive(false);
 
-                if ((j < grid_objects[i].Count - 1) && (grid_objects[i][j+1] == _start_tile || grid_objects[i][j+1] == _boss_tile))
+                if ((j < grid_objects[i].Count - 1) && (grid_objects[i][j + 1] == _start_tile || grid_objects[i][j + 1] == _boss_tile))
                     grid_objects[i][j].transform.Find("Tile_TDoor").gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void InitRooms()
+    {
+        for (int i = 0; i < grid_objects.Count; i++)
+        {
+            for (int j = 0; j < grid_objects[i].Count; j++)
+            {
+                grid_objects[i][j].GetComponent<RoomController>().InitRoom();
+
+                if (grid_objects[i][j] != _start_tile)
+                    grid_objects[i][j].SetActive(false);
             }
         }
     }
@@ -183,6 +196,8 @@ public class LevelGenerator : MonoBehaviour {
     {
         _current_tile.SetActive(false);
         _current_tile.GetComponent<RoomController>().DestroyRoom();
+
+        GameObject door = _current_tile.transform.Find("Tile_BDoor").gameObject;
 
         switch (door_tag)
         {
@@ -196,14 +211,21 @@ public class LevelGenerator : MonoBehaviour {
         _current_tile.GetComponent<RoomController>().InitRoom();
         _current_tile.SetActive(true);
 
+        switch (door_tag)
+        {
+            case "TDoor": { door = _current_tile.transform.Find("Tile_BDoor").gameObject; } break;
+            case "BDoor": { door = _current_tile.transform.Find("Tile_TDoor").gameObject; } break;
+            case "LDoor": { door = _current_tile.transform.Find("Tile_RDoor").gameObject; } break;
+            case "RDoor": { door = _current_tile.transform.Find("Tile_LDoor").gameObject; } break;
+        }
+
         // Teleport the player here to it's new tile.
         // Apply camera transition
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = _current_tile.transform.position;
+        player.transform.position = new Vector3(door.transform.position.x, transform.position.y - 2.5f, door.transform.position.z);
+        player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
         Camera.main.transform.position = _current_tile.transform.position + camera_offset;
-
-        Debug.Log(player.transform.position);
-
     }
 
     public void GeneratePath()

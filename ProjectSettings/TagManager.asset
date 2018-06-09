@@ -11,6 +11,7 @@ TagManager:
   - RDoor
   - Mutation
   - Enemy
+  - Scenario
   layers:
   - Default
   - TransparentFX

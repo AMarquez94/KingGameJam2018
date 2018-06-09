@@ -7,7 +7,11 @@ public class GameControllerManager : MonoBehaviour {
     static GameControllerManager _instance;
     public GameObject player;
 
-	void Awake () {
+    public bool fading;
+    const float INCREMENT = 0.01f;
+    const float MAX_BLEND = 2;
+
+    void Awake () {
         _instance = this;
         if(player == null)
         {
@@ -28,5 +32,25 @@ public class GameControllerManager : MonoBehaviour {
     public GameObject getPlayer()
     {
         return _instance.player;
+    }
+
+    void Update()
+    {
+        //if (fading)
+        //{
+        //    fadeValue += INCREMENT;
+        //    so.intensity = fadeValue * MAX_BLEND;
+
+        //    if (fadeValue >= 1)
+        //    {
+        //        fading = false;
+        //        // change player position
+        //    }
+        //}
+        //else if (fadeValue > 0)
+        //{
+        //    fadeValue = Mathf.Max(0, fadeValue - INCREMENT);
+        //    so.intensity = fadeValue * MAX_BLEND;
+        //}
     }
 }
