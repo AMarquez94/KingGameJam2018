@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainShootEnemyController : MonoBehaviour {
+public class BossPhase1EnemyController : MonoBehaviour {
 
     public GameObject bullet;
 
@@ -12,28 +12,31 @@ public class MainShootEnemyController : MonoBehaviour {
 
     private enemyController enemyCont;
 
+    private CharacterBulletPower bullet_power;
+
     private void Start()
     {
+        bullet_power = GetComponent<CharacterBulletPower>();
         enemyCont = GetComponent<enemyController>();
-        if(enemyCont == null)
+        if (enemyCont == null)
         {
             enemyCont = this.gameObject.AddComponent<enemyController>();
             Debug.LogWarning("Te has dejau de poner el enemyController crack");
         }
-        playerPos = GameControllerManager.getGameControllerManager().getPlayer().transform;
+
     }
 
-    void Update () {
+    void Update()
+    {
         timerForAttack += Time.deltaTime;
-        if(timerForAttack >= enemyCont.attackFrecuency)
+        if (timerForAttack >= enemyCont.attackFrecuency)
         {
             Vector3 dirToPlayer = playerPos.position - this.transform.position;
-            GameObject bullet_go = Instantiate(bullet, this.transform.position + this.transform.forward * 0.1f,Quaternion.identity);
+            GameObject bullet_go = Instantiate(bullet, this.transform.position + this.transform.forward * 0.1f, Quaternion.identity);
             bullet_go.transform.forward = dirToPlayer;
-            bullet_go.GetComponent<BulletController>().setVariables(enemyCont.character_bullet_controller.bullet_damage, enemyCont.character_bullet_controller.bullet_speed, enemyCont.character_bullet_controller.bullet_range);
-            bullet_go.GetComponent<BulletController>().SetSender(this.gameObject);
+            BulletController bull_cont = bullet_go.GetComponent<BulletController>();
+            bull_cont.setVariables(bullet_power.bullet_damage, bullet_power.bullet_speed, bullet_power.bullet_range);
             timerForAttack = 0.0f;
         }
-	}
-
+    }
 }

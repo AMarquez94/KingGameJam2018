@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         bulletMutation = new MutationController.BulletMutation();
+        current_life = life;
 	}
 	
 	// Update is called once per frame
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour {
                 time_since_last_shoot = 0;
                 GameObject bulletObject = Instantiate(bullet, this.transform.position, Quaternion.identity);
                 bulletObject.transform.forward = this.transform.forward;
+                bulletObject.GetComponent<BulletController>().SetSender(this.gameObject);
             }
 
             #endregion --manage shootings--
@@ -165,16 +167,12 @@ public class PlayerController : MonoBehaviour {
         this.bulletMutation.bulletSpeedModificer += bulletMutation.bulletSpeedModificer;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void ReceiveShot(int damage)
     {
-        if (other.tag == "Bullet")
+        this.current_life = Mathf.Clamp(current_life - damage, 0, maxLife);
+        if(current_life <= 0)
         {
-            //this.current_life -= other.gameObject.get
-
-            if(current_life <= 0)
-            {
-                myState = States.DEAD;
-            }
+            myState = States.DEAD;
         }
     }
 }
