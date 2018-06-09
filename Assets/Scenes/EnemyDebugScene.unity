@@ -242,6 +242,12 @@ Prefab:
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 879828607}
+    - target: {fileID: 114556493420488664, guid: ac8c51fb7fbac5341a411988fe725bf6,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1478266385911260, guid: 669a835de2bc0884aa563e9577b3e329,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac8c51fb7fbac5341a411988fe725bf6, type: 2}
   m_IsPrefabParent: 0
@@ -338,7 +344,7 @@ GameObject:
   - component: {fileID: 879828604}
   m_Layer: 0
   m_Name: debugPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
