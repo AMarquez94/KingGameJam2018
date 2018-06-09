@@ -172,8 +172,9 @@ public class MutationController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
+            print("Sending my type " + mutationType + " and " + affectingType);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.SetModifier(playerMutation);
+            playerController.SetModifier(playerMutation, bulletMutation);
             Destroy(this.gameObject);
         }
     }
@@ -198,13 +199,13 @@ public class MutationController : MonoBehaviour {
         switch (mutationType)
         {
             case MutationType.GOOD:
-                playerMutation.cadencyModifier = Random.Range(0.1f, 0.5f);
+                playerMutation.cadencyModifier = Random.Range(-0.2f, -0.05f);
                 break;
             case MutationType.BAD:
-                playerMutation.cadencyModifier = Random.Range(-0.5f, -0.1f);
+                playerMutation.cadencyModifier = Random.Range(0.05f, 0.2f);
                 break;
             case MutationType.UNKNOWN:
-                playerMutation.cadencyModifier = Random.Range(-0.5f, 0.6f);
+                playerMutation.cadencyModifier = Random.Range(-0.2f, 0.15f);
                 break;
         }
     }
