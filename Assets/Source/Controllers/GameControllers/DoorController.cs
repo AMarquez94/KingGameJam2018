@@ -22,7 +22,7 @@ public class DoorController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         // Do the swap logic here
-        if (other.tag == "player")
+        if (other.tag == "Player")
             LevelGenerator.instance.ChangeTile(this.tag);
 
         // Destroy everything on the actual room;

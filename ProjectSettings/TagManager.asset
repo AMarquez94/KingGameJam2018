@@ -10,6 +10,7 @@ TagManager:
   - LDoor
   - RDoor
   - Mutation
+  - PlayerCamera
   layers:
   - Default
   - TransparentFX

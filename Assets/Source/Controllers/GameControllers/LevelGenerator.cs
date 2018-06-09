@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public Vector2 grid_size;
     public Vector2 tile_size;
+    public Vector3 camera_offset;
 
     public GameObject tile_prefab;
 
@@ -56,11 +57,11 @@ public class LevelGenerator : MonoBehaviour {
             grid_objects.Add(new List<GameObject>());
             for (int j = 0; j < grid_size.y; j++)
             {
-                GameObject instance = Instantiate(tile_prefab, new Vector3(i * tile_size.x, 0, j * tile_size.y), Quaternion.identity) as GameObject;
+                GameObject instance = Instantiate(tile_prefab, new Vector3(i * tile_size.x, 0, j * tile_size.y), Quaternion.EulerAngles(0,180 * Mathf.Deg2Rad,0)) as GameObject;
                 instance.transform.SetParent(transform);
                 instance.name = "Tile_" + i + "-" + j;
                 instance.GetComponent<RoomController>().grid_pos = new Vector2(i, j);
-                //instance.SetActive(false);
+                instance.SetActive(false);
 
                 grid_objects.Last().Add(instance);
             }
@@ -114,15 +115,19 @@ public class LevelGenerator : MonoBehaviour {
         // Debug purposes
         {
             GameObject start_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            start_point.transform.position = _start_tile.transform.localPosition + new Vector3(0, 1, 0);
+            start_point.transform.position = _start_tile.transform.position + new Vector3(0, 1, 0);
             start_point.GetComponent<MeshRenderer>().material.color = Color.green;
 
             GameObject boss_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            boss_point.transform.position = _boss_tile.transform.localPosition + new Vector3(0, 1, 0);
+            boss_point.transform.position = _boss_tile.transform.position + new Vector3(0, 1, 0);
             boss_point.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
-
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player_camera = GameObject.FindGameObjectWithTag("PlayerCamera");
+        player.transform.position = _current_tile.transform.position;
+        Camera.main.transform.position = _current_tile.transform.position + camera_offset;
+        Debug.Log(player.transform.position);
     }
 
     public void DisableDoors()
@@ -193,6 +198,11 @@ public class LevelGenerator : MonoBehaviour {
 
         // Teleport the player here to it's new tile.
         // Apply camera transition
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = _current_tile.transform.position;
+        Camera.main.transform.position = _current_tile.transform.position + camera_offset;
+
+        Debug.Log(player.transform.position);
 
     }
 
