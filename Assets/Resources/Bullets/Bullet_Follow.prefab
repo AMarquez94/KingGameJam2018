@@ -111,6 +111,12 @@ MonoBehaviour:
   damage: 10
   speed: 3
   range: 10
+  minDamage: 0
+  maxDamage: 0
+  minSpeed: 0
+  maxSpeed: 0
+  minRange: 0
+  maxRange: 0
 --- !u!114 &114609207649864686
 MonoBehaviour:
   m_ObjectHideFlags: 1
