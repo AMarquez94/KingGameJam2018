@@ -7,6 +7,20 @@ public class GameControllerManager : MonoBehaviour {
     static GameControllerManager _instance;
     public GameObject player;
 
+    public class DNARegistry
+    {
+        public string name;
+        public string mutation;
+        public int life;
+        public float maxSpeed;
+        public float cadency;
+        public float damage;
+        public float bulletSpeed;
+        public float bulletrange;
+    }
+
+    private List<DNARegistry> registry;
+
     public bool fading;
     const float INCREMENT = 0.01f;
     const float MAX_BLEND = 2;
