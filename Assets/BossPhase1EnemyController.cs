@@ -74,7 +74,7 @@ public class BossPhase1EnemyController : MonoBehaviour {
 
                 case BossPhase1Attack.Teleport:
 
-                    Vector3 tile_pos = LevelGenerator.instance._current_tile.transform.position;
+                    Vector3 tile_pos = LevelGenerator.instance.GetCurrentTile().transform.position;
                     Vector2 tile_size = LevelGenerator.instance.tile_size;
                     teleportPoint = new Vector3(Random.Range(tile_pos.x - (tile_size.x / 4), tile_pos.x + (tile_size.x / 4)), -2.2f, Random.Range(tile_pos.z - (tile_size.y / 4), tile_pos.z + (tile_size.y / 4)));
                     teleportParticles.transform.position = teleportPoint;
