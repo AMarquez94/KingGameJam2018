@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Door
+  - TDoor
+  - BDoor
+  - LDoor
+  - RDoor
+  - Mutation
   layers:
   - Default
   - TransparentFX

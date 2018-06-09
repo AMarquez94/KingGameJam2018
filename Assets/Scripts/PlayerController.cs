@@ -6,7 +6,11 @@ public class PlayerController : MonoBehaviour {
 
     public float maxSpeed;
     public float incrSpeed;
+    public float cadency;
+    public int life;
 
+
+    private int current_life;
     private float current_speed_x;
     private float current_speed_z;
 
@@ -84,5 +88,13 @@ public class PlayerController : MonoBehaviour {
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
+
+    public void SetModifier(MutationController.PlayerMutation mutation)
+    {
+        print("Player mutation " + mutation.lifeModifier + " - " + mutation.speedModifier + " - " + mutation.cadencyModifier);
+        life = Mathf.Clamp(life + mutation.lifeModifier, 10, 300);
+        maxSpeed = Mathf.Clamp(maxSpeed + mutation.speedModifier, 1f, 20f);
+        cadency = Mathf.Clamp(cadency + mutation.cadencyModifier, 1f, 20f);
     }
 }
