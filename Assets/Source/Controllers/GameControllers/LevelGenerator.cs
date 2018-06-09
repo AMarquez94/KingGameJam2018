@@ -28,7 +28,7 @@ public class LevelGenerator : MonoBehaviour {
 
     private GameObject _start_tile;
     private GameObject _boss_tile;
-    private GameObject _current_tile;
+    public GameObject _current_tile;
 
     private List<Vector2> _root_path;
 
@@ -222,10 +222,10 @@ public class LevelGenerator : MonoBehaviour {
         // Teleport the player here to it's new tile.
         // Apply camera transition
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3(door.transform.position.x, transform.position.y - 2.5f, door.transform.position.z);
-        player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
-        Camera.main.transform.position = _current_tile.transform.position + camera_offset;
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+       // player.transform.position = new Vector3(door.transform.position.x, transform.position.y - 2.5f, door.transform.position.z);
+       // player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
+       // Camera.main.transform.position = _current_tile.transform.position + camera_offset;
     }
 
     public void GeneratePath()
