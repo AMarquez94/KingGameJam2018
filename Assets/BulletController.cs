@@ -17,6 +17,7 @@ public class BulletController : MonoBehaviour {
 
     private float ammountMoved = 0.0f;
     private Vector3 lastFramePosition;
+    private GameObject sender;
 
     private void Start()
     {
@@ -31,6 +32,11 @@ public class BulletController : MonoBehaviour {
             destroyBullet();
         }
         lastFramePosition = this.transform.position; 
+    }
+
+    public void SetSender(GameObject sender)
+    {
+        this.sender = sender;
     }
 
     private void destroyBullet()
@@ -50,5 +56,21 @@ public class BulletController : MonoBehaviour {
         damage = new_damage;
         speed = new_speed;
         range = new_range;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && sender.tag != "Player")
+        {
+            /* Hit the player and destroy the bullet */
+            other.gameObject.GetComponent<PlayerController>().ReceiveShot((int)damage);
+            Destroy(this.gameObject);
+        }
+        else if (other.gameObject.tag == "Enemy" && sender.tag != "Enemy")
+        {
+            /* Hit the enemy and destroy the bullet */
+            other.gameObject.GetComponent<enemyController>().ReceiveShot((int)damage);
+            Destroy(this.gameObject);
+        }
     }
 }

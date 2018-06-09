@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 195764368519966390}
   m_Layer: 0
   m_Name: ChaseEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f464f182bd9d54f8ef79a06898a00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLife: 100
   life: 100
   movementSpeed: 4
   attackFrecuency: 1
