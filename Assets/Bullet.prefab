@@ -92,7 +92,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488992077943416}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -111,6 +111,12 @@ MonoBehaviour:
   damage: 10
   speed: 3
   range: 10
+  minDamage: 2
+  maxDamage: 20
+  minSpeed: 1
+  maxSpeed: 20
+  minRange: 2
+  maxRange: 30
 --- !u!114 &114591282355929322
 MonoBehaviour:
   m_ObjectHideFlags: 1
