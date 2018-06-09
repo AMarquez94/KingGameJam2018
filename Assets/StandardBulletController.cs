@@ -17,6 +17,5 @@ public class StandardBulletController : MonoBehaviour {
 	void Update () {
 
         this.transform.position += this.transform.forward * Time.deltaTime * bulletCont.speed;
-
     }
 }
