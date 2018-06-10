@@ -140,8 +140,8 @@ public class BossPhase1EnemyController : MonoBehaviour {
                 case BossPhase1Attack.Spawn:
                     int randEnemyIndex = Random.Range(0,enemiesToSpawn.Length);
                     GameObject enemy = Instantiate(enemiesToSpawn[randEnemyIndex], transform.position + Random.Range(-3.0f, 3.0f) * Vector3.right + Random.Range(-3.0f, 3.0f) * Vector3.forward, Quaternion.identity);
-                    enemy.GetComponent<CharacterBulletPower>().bullet_damage = 10;
-                    enemy.GetComponent<CharacterBulletPower>().bullet_speed = 10;
+                    enemy.GetComponent<CharacterBulletPower>().bullet_damage = 30;
+                    enemy.GetComponent<CharacterBulletPower>().bullet_speed = 15;
                     enemy.GetComponent<CharacterBulletPower>().bullet_range = 20;
                     enemy.GetComponent<enemyController>().attackFrecuency = 2;
                     timerForAttack = 0.0f;

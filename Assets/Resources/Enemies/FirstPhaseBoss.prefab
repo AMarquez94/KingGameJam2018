@@ -105,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 1676149745311706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4560432365492326}
   m_RootOrder: 0
@@ -327,9 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85728a9d9aac9b4396551b6b9a129dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_damage: 10
-  bullet_speed: 10
-  bullet_range: 20
+  bullet_damage: 50
+  bullet_speed: 15
+  bullet_range: 30
 --- !u!114 &114630136773376928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,8 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f464f182bd9d54f8ef79a06898a00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 10
-  life: 100
+  maxLife: 1000
+  life: 1000
   movementSpeed: 4
   attackFrecuency: 1
   character_bullet_controller: {fileID: 114166222486154258}
