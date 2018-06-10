@@ -32,7 +32,6 @@ public class RoomController : MonoBehaviour {
 	
     void Start()
     {
-
         room_clear = false;
     }
 
@@ -105,14 +104,6 @@ public class RoomController : MonoBehaviour {
 
             #region --Place the enemies--
             int valueNumberOfEnemies = Random.Range(minEnemies, maxEnemies);
-            if (valueNumberOfEnemies > 0)
-            {
-                room_clear = false;
-            }
-            else
-            {
-                room_clear = true;
-            }
 
             Vector3 tile_pos = this.transform.position;
             Vector2 tile_size = LevelGenerator.instance.tile_size;
@@ -277,8 +268,28 @@ public class RoomController : MonoBehaviour {
         if (!room_clear && !areEnemies)
         {
             /* First frame without enemies - maybe we do something */
-
+            openDoors();
         }
         room_clear = !areEnemies;
+    }
+
+    public void openDoors()
+    {
+        GameObject door;
+        door = transform.Find("Tile_TDoor").gameObject;
+        door.GetComponent<MeshRenderer>().enabled = false;
+        door.GetComponent<BoxCollider>().isTrigger = true;
+
+        door = transform.Find("Tile_BDoor").gameObject;
+        door.GetComponent<MeshRenderer>().enabled = false;
+        door.GetComponent<BoxCollider>().isTrigger = true;
+
+        door = transform.Find("Tile_RDoor").gameObject;
+        door.GetComponent<MeshRenderer>().enabled = false;
+        door.GetComponent<BoxCollider>().isTrigger = true;
+
+        door = transform.Find("Tile_LDoor").gameObject;
+        door.GetComponent<MeshRenderer>().enabled = false;
+        door.GetComponent<BoxCollider>().isTrigger = true;
     }
 }
