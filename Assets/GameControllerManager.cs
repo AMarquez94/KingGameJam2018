@@ -50,6 +50,8 @@ public class GameControllerManager : MonoBehaviour {
         registry.Add(newRegistry);
 
         playerRespawns++;
+
+        Menu_GamePlay._instance.ChangeState(Menu_GamePlay.GameState.OVER);
     }
 
     public void EnemyDied(string name)
@@ -97,7 +99,7 @@ public class GameControllerManager : MonoBehaviour {
         public float bulletrange;
     }
 
-    private List<DNARegistry> registry;
+    public List<DNARegistry> registry;
 
     public bool fading;
     const float INCREMENT = 0.01f;
@@ -148,7 +150,7 @@ public class GameControllerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             playerDied();
-            SceneManager.LoadScene("scene_pre1", LoadSceneMode.Single);
+            //SceneManager.LoadScene("scene_pre1", LoadSceneMode.Single);
         }
         //if (fading)
         //{

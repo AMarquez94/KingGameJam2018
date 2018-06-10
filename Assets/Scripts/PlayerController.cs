@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -10,6 +11,13 @@ public class PlayerController : MonoBehaviour {
         MOVING,
         DEAD
     }
+
+    public GameObject health;
+    public GameObject speed;
+    public GameObject strength;
+    public GameObject bullet_speed;
+    public GameObject bullet_rate;
+    public GameObject bullet_range;
 
     public States myState;
     public string playerName;
@@ -284,6 +292,13 @@ public class PlayerController : MonoBehaviour {
             }
             #endregion --manage states--
         }
+
+        bullet_rate.GetComponent<Text>().text = cadency.ToString("0.00");
+        bullet_speed.GetComponent<Text>().text = bullet.GetComponent<BulletController>().speed.ToString("0.00");
+        bullet_range.GetComponent<Text>().text = bullet.GetComponent<BulletController>().range.ToString("0.00");
+        strength.GetComponent<Text>().text = bullet.GetComponent<BulletController>().damage.ToString("0.00");
+        speed.GetComponent<Text>().text = maxSpeed.ToString("0.00");
+        health.GetComponent<Text>().text = current_life.ToString("0.0");
     }
 
     private bool MotionKeysNotPressed()
