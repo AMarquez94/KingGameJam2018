@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour {
                 anim.Play("attack");
                 canShoot = false;
                 time_since_last_shoot = 0;
-                GameObject bulletObject = Instantiate(bullet, this.transform.position, Quaternion.identity);
+                GameObject bulletObject = Instantiate(bullet, this.transform.position + Vector3.up * 0.35f, Quaternion.identity);
                 bulletObject.transform.forward = this.transform.forward;
                 bulletObject.GetComponent<BulletController>().SetSender(this.gameObject);
             }
