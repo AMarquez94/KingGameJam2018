@@ -58,13 +58,17 @@ public class MutationController : MonoBehaviour {
         if (value <= probabilityGood)
         {
             mutationType = MutationType.GOOD;
-        } else if (value > probabilityGood && value < probabilityGood + probabilityBad)
+            /* URI: Change shader color (green) */
+        }
+        else if (value > probabilityGood && value < probabilityGood + probabilityBad)
         {
             mutationType = MutationType.BAD;
+            /* URI: Change shader color (red) */
         }
         else
         {
             mutationType = MutationType.UNKNOWN;
+            /* URI: Change shader color (grey¿?) */
         }
 
         value = Random.value;

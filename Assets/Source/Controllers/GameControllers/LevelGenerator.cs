@@ -30,6 +30,11 @@ public class LevelGenerator : MonoBehaviour {
     private GameObject _boss_tile;
     private GameObject _current_tile;
 
+    public GameObject GetStartTile() { return _start_tile; }
+    public GameObject GetBossTile() { return _boss_tile; }
+    public GameObject GetCurrentTile() { return _current_tile; }
+
+
     private List<Vector2> _root_path;
 
     void Awake()
@@ -226,6 +231,8 @@ public class LevelGenerator : MonoBehaviour {
         player.transform.position = new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z);
         player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
         Camera.main.transform.position = _current_tile.transform.position + camera_offset;
+
+
     }
 
     public void GeneratePath()

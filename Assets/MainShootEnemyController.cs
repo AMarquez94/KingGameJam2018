@@ -24,6 +24,7 @@ public class MainShootEnemyController : MonoBehaviour {
     }
 
     void Update () {
+        this.transform.LookAt(playerPos.position);
         timerForAttack += Time.deltaTime;
         if(timerForAttack >= enemyCont.attackFrecuency)
         {
