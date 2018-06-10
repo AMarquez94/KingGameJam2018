@@ -100368,8 +100368,8 @@ MonoBehaviour:
   room_clear: 1
   grid_pos: {x: 0, y: 0}
   max_obstacles: 8
-  minEnemies: 0
-  maxEnemies: 0
+  minEnemies: 2
+  maxEnemies: 5
   probabilityMeleeEnemies: 0.2
   probabilityDistanceEnemies: 0.5
   probabilityNormalDistanceEnemies: 0.3
