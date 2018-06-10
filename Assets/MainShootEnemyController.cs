@@ -12,6 +12,8 @@ public class MainShootEnemyController : MonoBehaviour {
 
     private enemyController enemyCont;
 
+    private float rangeTime = 0.0f;
+
     private void Start()
     {
         enemyCont = GetComponent<enemyController>();
@@ -26,7 +28,7 @@ public class MainShootEnemyController : MonoBehaviour {
     void Update () {
         this.transform.LookAt(playerPos.position);
         timerForAttack += Time.deltaTime;
-        if(timerForAttack >= enemyCont.attackFrecuency)
+        if(timerForAttack >= enemyCont.attackFrecuency + rangeTime)
         {
             Vector3 dirToPlayer = playerPos.position - this.transform.position;
             GameObject bullet_go = Instantiate(bullet, this.transform.position + this.transform.forward * 0.1f,Quaternion.identity);
@@ -34,7 +36,13 @@ public class MainShootEnemyController : MonoBehaviour {
             bullet_go.GetComponent<BulletController>().setVariables(enemyCont.character_bullet_controller.bullet_damage, enemyCont.character_bullet_controller.bullet_speed, enemyCont.character_bullet_controller.bullet_range);
             bullet_go.GetComponent<BulletController>().SetSender(this.gameObject);
             timerForAttack = 0.0f;
+            rangeTime = Random.Range(-1.0f,1.0f);
         }
 	}
+
+    public void changeTexture(Texture text)
+    {
+        
+    }
 
 }
