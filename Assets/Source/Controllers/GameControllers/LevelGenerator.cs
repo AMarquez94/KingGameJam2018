@@ -22,6 +22,7 @@ public class LevelGenerator : MonoBehaviour {
     public Vector3 camera_offset;
 
     public GameObject tile_prefab;
+    public GameObject boss_prefab;
 
     private Vector2 hack_tile;
     private Vector2 actual_tile;
@@ -63,13 +64,20 @@ public class LevelGenerator : MonoBehaviour {
 
     public void GenerateTiles()
     {
+        // Finally pick one of the rooms as our spawn.
+        actual_tile.x = (int)UnityEngine.Random.Range(1, grid_size.x - 3);
+        actual_tile.y = (int)UnityEngine.Random.Range(1, grid_size.y - 2);
+        Vector2 boss_tile = new Vector2(actual_tile.x + 1, actual_tile.y + 1);
+
         // Size of 15 per 10
-        for(int i = 0; i < grid_size.x; i++)
+        for (int i = 0; i < grid_size.x; i++)
         {
             grid_objects.Add(new List<GameObject>());
             for (int j = 0; j < grid_size.y; j++)
             {
-                GameObject instance = Instantiate(tile_prefab, new Vector3(i * tile_size.x, 0, j * tile_size.y), Quaternion.EulerAngles(0,180 * Mathf.Deg2Rad,0)) as GameObject;
+                GameObject prefab_to_inst = (i == boss_tile.x && j == boss_tile.y) ? boss_prefab : tile_prefab;
+
+                GameObject instance = Instantiate(prefab_to_inst, new Vector3(i * tile_size.x, 0, j * tile_size.y), Quaternion.EulerAngles(0,180 * Mathf.Deg2Rad,0)) as GameObject;
                 instance.transform.SetParent(transform);
                 instance.name = "Tile_" + i + "-" + j;
                 instance.GetComponent<RoomController>().grid_pos = new Vector2(i, j);
@@ -104,10 +112,6 @@ public class LevelGenerator : MonoBehaviour {
 
     public void SeedStart()
     {
-        // Finally pick one of the rooms as our spawn.
-        actual_tile.x = (int)UnityEngine.Random.Range(1, grid_size.x - 3);
-        actual_tile.y = (int)UnityEngine.Random.Range(1, grid_size.y - 2);
-
         {
             _current_tile = grid_objects[(int)actual_tile.x][(int)actual_tile.y];
             _current_tile.transform.Find("Tile_LDoor").gameObject.SetActive(false);
@@ -128,13 +132,13 @@ public class LevelGenerator : MonoBehaviour {
 
         // Debug purposes
         {
-            GameObject start_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            start_point.transform.position = _start_tile.transform.position + new Vector3(0, 1, 0);
-            start_point.GetComponent<MeshRenderer>().material.color = Color.green;
+            //GameObject start_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //start_point.transform.position = _start_tile.transform.position + new Vector3(0, 1, 0);
+            //start_point.GetComponent<MeshRenderer>().material.color = Color.green;
 
-            GameObject boss_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            boss_point.transform.position = _boss_tile.transform.position + new Vector3(0, 1, 0);
-            boss_point.GetComponent<MeshRenderer>().material.color = Color.red;
+            //GameObject boss_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //boss_point.transform.position = _boss_tile.transform.position + new Vector3(0, 1, 0);
+            //boss_point.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
