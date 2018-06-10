@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   probabilityGood: 0.2
-  probabilityBad: 0.2
-  probabilityUnknown: 0.6
+  probabilityBad: 0.1
+  probabilityUnknown: 0.7
   mutationType: 2
   probabilityAll: 0.2
   probabilityOne: 0.4
