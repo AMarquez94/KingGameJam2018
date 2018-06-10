@@ -123,6 +123,7 @@ public class BossPhase1EnemyController : MonoBehaviour {
                     bullet_go.transform.forward = dirToPlayer;
                     bull_cont = bullet_go.GetComponent<BulletController>();
                     bull_cont.setVariables(bullet_power.bullet_damage, bullet_power.bullet_speed, bullet_power.bullet_range);
+                    bull_cont.SetSender(this.gameObject);
                     timerForAttack = 0.0f;
                     doingAttack = false;
                     RandomNextAttack();
@@ -167,8 +168,10 @@ public class BossPhase1EnemyController : MonoBehaviour {
                     bullet_go = Instantiate(triple_bullet, this.transform.position + this.transform.forward * 0.1f, Quaternion.identity);
                     bullet_go.transform.forward = dirToPlayer;
                     bull_cont = bullet_go.GetComponent<BulletController>();
+                    bull_cont.SetSender(this.gameObject);
                     bull_cont.setVariables(bullet_power.bullet_damage, bullet_power.bullet_speed, bullet_power.bullet_range);
                     timerForAttack = 0.0f;
+                    doingAttack = false;
                     RandomNextAttack();
                     break;
 
