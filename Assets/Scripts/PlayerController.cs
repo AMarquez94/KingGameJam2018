@@ -271,6 +271,7 @@ public class PlayerController : MonoBehaviour {
                 canShoot = false;
                 time_since_last_shoot = 0;
                 GameObject bulletObject = Instantiate(bullet, this.transform.position + Vector3.up * 0.35f, Quaternion.identity);
+                bulletObject.GetComponent<BulletController>().SetMutation(bulletMutation);
                 bulletObject.transform.forward = this.transform.forward;
                 bulletObject.GetComponent<BulletController>().SetSender(this.gameObject);
             }

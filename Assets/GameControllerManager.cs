@@ -35,6 +35,7 @@ public class GameControllerManager : MonoBehaviour {
 
     public void playerDied()
     {
+        print("Entring in player Died");
         PlayerController p_controller = player.GetComponent<PlayerController>();
         BulletController p_bulletController = p_controller.bullet.GetComponent<BulletController>();
         DNARegistry newRegistry = new DNARegistry();
@@ -50,7 +51,6 @@ public class GameControllerManager : MonoBehaviour {
         registry.Add(newRegistry);
 
         playerRespawns++;
-
         Menu_GamePlay._instance.ChangeState(Menu_GamePlay.GameState.OVER);
     }
 
@@ -71,8 +71,7 @@ public class GameControllerManager : MonoBehaviour {
             newRegistry.bulletrange = p_bulletController.range;
 
             registry.Add(newRegistry);
-            /* End game */
-
+            Menu_GamePlay._instance.ChangeState(Menu_GamePlay.GameState.WIN);
         }
     }
 
@@ -138,35 +137,16 @@ public class GameControllerManager : MonoBehaviour {
 
         if (player != null)
         {
-            if(player.GetComponent<PlayerController>().myState == PlayerController.States.DEAD)
+            if(Menu_GamePlay._instance.currentstate == Menu_GamePlay.GameState.GAME && player.GetComponent<PlayerController>().myState == PlayerController.States.DEAD)
             {
                 /* Gestionar el reinicio */
                 playerDied();
-                /* Y cuando este todo -> reiniciar escena */
-
             }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             playerDied();
-            //SceneManager.LoadScene("scene_pre1", LoadSceneMode.Single);
         }
-        //if (fading)
-        //{
-        //    fadeValue += INCREMENT;
-        //    so.intensity = fadeValue * MAX_BLEND;
-
-        //    if (fadeValue >= 1)
-        //    {
-        //        fading = false;
-        //        // change player position
-        //    }
-        //}
-        //else if (fadeValue > 0)
-        //{
-        //    fadeValue = Mathf.Max(0, fadeValue - INCREMENT);
-        //    so.intensity = fadeValue * MAX_BLEND;
-        //}
     }
 }
