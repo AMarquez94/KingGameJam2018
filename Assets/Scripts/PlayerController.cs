@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour {
 
     public MutationController.BulletMutation bulletMutation;
 
+    public Animator anim;
+
 	// Use this for initialization
 	void Start () {
         bulletMutation = new MutationController.BulletMutation();
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.Mouse0) && canShoot)
             {
+                anim.Play("attack");
                 canShoot = false;
                 time_since_last_shoot = 0;
                 GameObject bulletObject = Instantiate(bullet, this.transform.position, Quaternion.identity);
