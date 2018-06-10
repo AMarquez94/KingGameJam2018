@@ -54,7 +54,7 @@ public class GameControllerManager : MonoBehaviour {
 
     public void EnemyDied(string name)
     {
-        if(name == "FirstPhaseBoss")
+        if(name == "FirstPhaseBoss(Clone)")
         {
             PlayerController p_controller = player.GetComponent<PlayerController>();
             BulletController p_bulletController = p_controller.bullet.GetComponent<BulletController>();
@@ -70,6 +70,7 @@ public class GameControllerManager : MonoBehaviour {
 
             registry.Add(newRegistry);
             /* End game */
+
         }
     }
 
