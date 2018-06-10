@@ -20,7 +20,12 @@ public class CameraController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+        GameObject player = GameControllerManager.getGameControllerManager().getPlayer();
+        if(player != null)
+        {
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            isBlackAndWhite = playerController.myMutation == PlayerController.PossibleMutations.BLACK_AND_WHITE;
+        }
 	}
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)

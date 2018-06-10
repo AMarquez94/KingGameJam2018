@@ -13,6 +13,22 @@ public class PlayerController : MonoBehaviour {
 
     public States myState;
 
+    public enum PossibleMutations
+    {
+        NONE,
+        BLACK_AND_WHITE,
+        INVERSED_CONTROLS,
+        INVERSED_MOUSE,
+        //SEE_BLURRED,
+        //SLOWPROJS_TONDAMAGE,
+        ////HOMMING_BULLETS,
+        ////TWO_SHOTS,
+        ////THREE_SHOTS,
+        //TONCADENCY_FEWDAMAGE
+    }
+
+    public PossibleMutations myMutation;
+
     public float maxSpeed;
     public float incrSpeed;
     public float cadency;
@@ -47,10 +63,24 @@ public class PlayerController : MonoBehaviour {
             #region --Control speed and movement--
             if (Input.GetKey(KeyCode.W))
             {
-                current_speed_z = Mathf.Clamp(current_speed_z + incrSpeed, -maxSpeed, maxSpeed);
+                if(myMutation != PossibleMutations.INVERSED_CONTROLS)
+                {
+                    current_speed_z = Mathf.Clamp(current_speed_z + incrSpeed, -maxSpeed, maxSpeed);
+                }
+                else
+                {
+                    current_speed_z = Mathf.Clamp(current_speed_z - incrSpeed, -maxSpeed, maxSpeed);
+                }
             } else if (Input.GetKey(KeyCode.S))
             {
-                current_speed_z = Mathf.Clamp(current_speed_z - incrSpeed, -maxSpeed, maxSpeed);
+                if (myMutation != PossibleMutations.INVERSED_CONTROLS)
+                {
+                    current_speed_z = Mathf.Clamp(current_speed_z - incrSpeed, -maxSpeed, maxSpeed);
+                }
+                else
+                {
+                    current_speed_z = Mathf.Clamp(current_speed_z + incrSpeed, -maxSpeed, maxSpeed);
+                }
             }
             else
             {
@@ -66,11 +96,25 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.D))
             {
-                current_speed_x = Mathf.Clamp(current_speed_x + incrSpeed, -maxSpeed, maxSpeed);
+                if (myMutation != PossibleMutations.INVERSED_CONTROLS)
+                {
+                    current_speed_x = Mathf.Clamp(current_speed_x + incrSpeed, -maxSpeed, maxSpeed);
+                }
+                else
+                {
+                    current_speed_x = Mathf.Clamp(current_speed_x - incrSpeed, -maxSpeed, maxSpeed);
+                }
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                current_speed_x = Mathf.Clamp(current_speed_x - incrSpeed, -maxSpeed, maxSpeed);
+                if (myMutation != PossibleMutations.INVERSED_CONTROLS)
+                {
+                    current_speed_x = Mathf.Clamp(current_speed_x - incrSpeed, -maxSpeed, maxSpeed);
+                }
+                else
+                {
+                    current_speed_x = Mathf.Clamp(current_speed_x + incrSpeed, -maxSpeed, maxSpeed);
+                }
             }
             else
             {
@@ -104,7 +148,15 @@ public class PlayerController : MonoBehaviour {
                 Vector3 targetPoint = ray.GetPoint(hitdist);
 
                 // Determine the target rotation.  This is the rotation if the transform looks at the target point.
-                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+                Quaternion targetRotation;
+                if(myMutation != PossibleMutations.INVERSED_MOUSE)
+                {
+                     targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+                }
+                else
+                {
+                    targetRotation = Quaternion.LookRotation(-targetPoint + transform.position);
+                }
 
                 // Smoothly rotate towards the target point.
                 transform.rotation = targetRotation;
