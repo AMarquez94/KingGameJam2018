@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     public States myState;
+    public string playerName;
+
+    public float probabilityRandomMutator;
 
     public enum PossibleMutations
     {
@@ -19,13 +22,41 @@ public class PlayerController : MonoBehaviour {
         BLACK_AND_WHITE,
         INVERSED_CONTROLS,
         INVERSED_MOUSE,
-        SPRINT
+        SPRINT,
+        NUMBER_MUTATIONS
         //SEE_BLURRED,
         //SLOWPROJS_TONDAMAGE,
         ////HOMMING_BULLETS,
         ////TWO_SHOTS,
         ////THREE_SHOTS,
         //TONCADENCY_FEWDAMAGE
+    }
+
+    public string mutationToString()
+    {
+        string myMutationName = "-";
+        switch (myMutation)
+        {
+            case PossibleMutations.NONE:
+                myMutationName = "-";
+                break;
+            case PossibleMutations.BLACK_AND_WHITE:
+                myMutationName = "Black and White";
+                break;
+            case PossibleMutations.INVERSED_CONTROLS:
+                myMutationName = "Inversed Controls";
+                break;
+            case PossibleMutations.INVERSED_MOUSE:
+                myMutationName = "Inversed Aiming";
+                break;
+            case PossibleMutations.SPRINT:
+                myMutationName = "Sprint";
+                break;
+            case PossibleMutations.NUMBER_MUTATIONS:
+                myMutationName = "-";
+                break;
+        }
+        return myMutationName;
     }
 
     public PossibleMutations myMutation;
@@ -54,12 +85,32 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Init();
+	}
+
+    private void Init()
+    {
         bulletMutation = new MutationController.BulletMutation();
         current_life = life;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        int player_respawns = GameControllerManager.getGameControllerManager().getPlayerRespawns();
+        playerName = GameControllerManager.getGameControllerManager().getRandomPlayerName();
+        if (player_respawns > 0)
+        {
+            RandomMutator();
+        }
+    }
+
+    private void RandomMutator()
+    {
+        if (Random.value < probabilityRandomMutator)
+        {
+            int mutation = Random.Range(1, (int)PossibleMutations.NUMBER_MUTATIONS);
+            myMutation = (PossibleMutations)mutation;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if(myState != States.DEAD)
         {

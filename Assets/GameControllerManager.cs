@@ -1,11 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControllerManager : MonoBehaviour {
 
     static GameControllerManager _instance;
     public GameObject player;
+
+    private string[] playerNames = new string[]{
+        "Heershi",
+        "Kixaix",
+        "Ithertos",
+        "Sodheitho",
+        "Issatu",
+        "Prujat",
+        "Dhrerya",
+        "Adoshtha",
+        "Dhrashthinga",
+        "Ivyimittat",
+        "Szelu",
+        "Thota",
+        "Cholalla",
+        "Sciscizal",
+        "Oxili",
+        "Khastu",
+        "Talas",
+        "Epakyas",
+        "Vrathayas",
+        "Tasikindha"
+    };
+
+    private int playerRespawns;
+
+    public void playerDied()
+    {
+        PlayerController p_controller = player.GetComponent<PlayerController>();
+        BulletController p_bulletController = p_controller.bullet.GetComponent<BulletController>();
+        DNARegistry newRegistry = new DNARegistry();
+        newRegistry.name = p_controller.playerName;
+        newRegistry.mutation = p_controller.mutationToString();
+        newRegistry.life = p_controller.life;
+        newRegistry.maxSpeed = p_controller.maxSpeed;
+        newRegistry.cadency = p_controller.cadency;
+        newRegistry.damage = p_bulletController.damage;
+        newRegistry.bulletSpeed = p_bulletController.speed;
+        newRegistry.bulletrange = p_bulletController.range;
+
+        registry.Add(newRegistry);
+        playerRespawns++;
+    }
+
+    public int getPlayerRespawns()
+    {
+        return playerRespawns;
+    }
+
+    public string getRandomPlayerName()
+    {
+        int index = Random.Range(0, playerNames.Length-1);
+        return playerNames[index];
+    }
 
     public class DNARegistry
     {
@@ -31,6 +86,10 @@ public class GameControllerManager : MonoBehaviour {
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+
+        Object.DontDestroyOnLoad(this.gameObject);
+        playerRespawns = 0;
+        registry = new List<DNARegistry>();
 	}
 	
     public static GameControllerManager getGameControllerManager()
@@ -50,6 +109,23 @@ public class GameControllerManager : MonoBehaviour {
 
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            if(player.GetComponent<PlayerController>().myState == PlayerController.States.DEAD)
+            {
+                /* Gestionar el reinicio */
+                playerDied();
+                /* Y cuando este todo -> reiniciar escena */
+
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            playerDied();
+            SceneManager.LoadScene("scene_pre1", LoadSceneMode.Single);
+        }
         //if (fading)
         //{
         //    fadeValue += INCREMENT;
