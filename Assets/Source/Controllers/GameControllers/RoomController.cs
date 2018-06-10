@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoomController : MonoBehaviour {
 
@@ -72,8 +73,11 @@ public class RoomController : MonoBehaviour {
             }
 
             // Build the navmesh
-
-
+            NavMeshSurface surface = this.transform.GetChild(0).GetChild(0).FindChild("Cube").GetComponent<NavMeshSurface>();
+            if(surface != null)
+            {
+                surface.BuildNavMesh();
+            }
             // Place the enemies
             int valueNumberOfEnemies = Random.Range(minEnemies, maxEnemies);
 

@@ -13,7 +13,11 @@ public class TripleBulletController : MonoBehaviour {
         GameObject bullet2 = Instantiate(bullet, this.transform.position, this.transform.rotation * Quaternion.Euler(0,20,0));
         GameObject bullet3 = Instantiate(bullet, this.transform.position, this.transform.rotation * Quaternion.Euler(0, -20, 0));
         bullet1.GetComponent<BulletController>().setVariables(bull_cont.damage, bull_cont.speed, bull_cont.range);
+        bullet1.GetComponent<BulletController>().SetSender(bull_cont.GetSender());
         bullet2.GetComponent<BulletController>().setVariables(bull_cont.damage, bull_cont.speed, bull_cont.range); ;
+        bullet2.GetComponent<BulletController>().SetSender(bull_cont.GetSender());
         bullet3.GetComponent<BulletController>().setVariables(bull_cont.damage, bull_cont.speed, bull_cont.range); ;
+        bullet3.GetComponent<BulletController>().SetSender(bull_cont.GetSender());
+        Destroy(this.gameObject);
     }
 }

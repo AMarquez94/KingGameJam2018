@@ -39,6 +39,11 @@ public class BulletController : MonoBehaviour {
         this.sender = sender;
     }
 
+    public GameObject GetSender()
+    {
+        return this.sender;
+    }
+
     private void destroyBullet()
     {
         Destroy(this.gameObject);
