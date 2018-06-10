@@ -214,8 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f464f182bd9d54f8ef79a06898a00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 100
-  life: 100
+  maxLife: 1
+  life: 1
   movementSpeed: 4
   attackFrecuency: 1
   character_bullet_controller: {fileID: 0}

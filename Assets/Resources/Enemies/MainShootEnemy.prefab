@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85728a9d9aac9b4396551b6b9a129dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_damage: 10
+  bullet_damage: 30
   bullet_speed: 6
   bullet_range: 10
 --- !u!114 &114527935120909030
@@ -326,5 +326,5 @@ MonoBehaviour:
   maxLife: 100
   life: 100
   movementSpeed: 4
-  attackFrecuency: 5
+  attackFrecuency: 2
   character_bullet_controller: {fileID: 114208075729031456}
