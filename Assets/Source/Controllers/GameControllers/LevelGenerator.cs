@@ -23,6 +23,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public GameObject tile_prefab;
 
+    private Vector2 hack_tile;
     private Vector2 actual_tile;
     public List<List<GameObject>> grid_objects;
 
@@ -34,6 +35,7 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject GetBossTile() { return _boss_tile; }
     public GameObject GetCurrentTile() { return _current_tile; }
 
+    public bool hack_room;
 
     private List<Vector2> _root_path;
 
@@ -45,13 +47,18 @@ public class LevelGenerator : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        hack_room = false;
         grid_objects = new List<List<GameObject>>();
         GenerateTiles();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            hack_room = true;          
+        }
 	}
 
     public void GenerateTiles()
@@ -108,6 +115,8 @@ public class LevelGenerator : MonoBehaviour {
             _current_tile.transform.Find("Tile_TDoor").gameObject.SetActive(false);
             _current_tile.SetActive(true);
             _start_tile = _current_tile;
+
+            hack_tile = new Vector2((int)actual_tile.x + 1, (int)actual_tile.y);
         }
 
         {
@@ -210,6 +219,12 @@ public class LevelGenerator : MonoBehaviour {
             case "BDoor":{ actual_tile.y--; } break;
             case "LDoor":{ actual_tile.x--; } break;
             case "RDoor":{ actual_tile.x++; } break;
+        }
+
+        if (hack_room)
+        {
+            actual_tile = hack_tile;
+            hack_room = false;
         }
 
         _current_tile = grid_objects[(int)actual_tile.x][(int)actual_tile.y];
