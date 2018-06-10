@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 122111084198219052}
   - component: {fileID: 114559230293214228}
   m_Layer: 0
-  m_Name: Mutation
+  m_Name: Mutation_old
   m_TagString: Mutation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

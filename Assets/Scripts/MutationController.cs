@@ -58,17 +58,23 @@ public class MutationController : MonoBehaviour {
         if (value <= probabilityGood)
         {
             mutationType = MutationType.GOOD;
-            /* URI: Change shader color (green) */
+            GameObject instance = Instantiate(Resources.Load("Halo_Green") as GameObject);
+            instance.transform.position = this.transform.parent.transform.position;
+            instance.transform.SetParent(this.transform);
         }
         else if (value > probabilityGood && value < probabilityGood + probabilityBad)
         {
             mutationType = MutationType.BAD;
-            /* URI: Change shader color (red) */
+            GameObject instance = Instantiate(Resources.Load("Halo_Red") as GameObject);
+            instance.transform.position = this.transform.parent.transform.position;
+            instance.transform.SetParent(this.transform);
         }
         else
         {
             mutationType = MutationType.UNKNOWN;
-            /* URI: Change shader color (grey¿?) */
+            GameObject instance = Instantiate(Resources.Load("Halo_Yellow") as GameObject);
+            instance.transform.position = this.transform.parent.transform.position;
+            instance.transform.SetParent(this.transform);
         }
 
         value = Random.value;
@@ -179,7 +185,10 @@ public class MutationController : MonoBehaviour {
             print("Sending my type " + mutationType + " and " + affectingType);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.SetModifier(playerMutation, bulletMutation);
-            Destroy(this.gameObject);
+            if(transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
+            } 
         }
     }
 

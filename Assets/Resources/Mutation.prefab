@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23331700889523978}
   - component: {fileID: 114557502995862960}
   - component: {fileID: 65545138412853010}
-  - component: {fileID: 122094514757438042}
   m_Layer: 0
   m_Name: MutationObject
   m_TagString: Mutation
@@ -158,14 +157,3 @@ MonoBehaviour:
   probabilityOne: 0.4
   probabilityTwo: 0.4
   affectingType: 0
---- !u!122 &122094514757438042
-Halo:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1129492453941370}
-  m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278255432
-  m_Size: 0.3
