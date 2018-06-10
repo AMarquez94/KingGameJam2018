@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54906142494265660}
   - component: {fileID: 114670088600789914}
   - component: {fileID: 114208075729031456}
+  - component: {fileID: 114527935120909030}
   m_Layer: 0
   m_Name: MainShootEnemy
   m_TagString: Enemy
@@ -127,6 +128,19 @@ MonoBehaviour:
   bullet_damage: 10
   bullet_speed: 6
   bullet_range: 10
+--- !u!114 &114527935120909030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617107018377966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9894c43b84c2643a0d20548a895ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  playerPos: {fileID: 0}
 --- !u!114 &114670088600789914
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,6 +24,10 @@ public class RoomController : MonoBehaviour {
     public float probabilityThreeDistanceEnemies;
     public float probabilityAreaDistanceEnemies;
 
+    public float probabilitySpawnOrNotMutation;
+    public int minMutators;
+    public int maxMutators;
+
     private LevelGenerator levelGenerator;
 
 	// Use this for initialization
@@ -34,8 +38,8 @@ public class RoomController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
+        UpdateAreThereEnemies();
+    }
 
     // Destroy all the enemies and stuff inside this room here
     public void DestroyRoom()
@@ -78,15 +82,20 @@ public class RoomController : MonoBehaviour {
             {
                 surface.BuildNavMesh();
             }
-            // Place the enemies
+
+            #region --Place the enemies--
             int valueNumberOfEnemies = Random.Range(minEnemies, maxEnemies);
+            if(valueNumberOfEnemies > 0)
+            {
+                room_clear = false;
+            }
 
             Vector3 tile_pos = this.transform.position;
             Vector2 tile_size = LevelGenerator.instance.tile_size;
+            GameObject candidate = transform.GetChild(0).gameObject;
             for (int i = 0; i < valueNumberOfEnemies; i++)
             {
                 float valueTypeOfEnemy = Random.value;
-                GameObject candidate = transform.GetChild(0).gameObject;
                 Vector3 newPosition = new Vector3(Random.Range(tile_pos.x - (tile_size.x / 4), tile_pos.x + (tile_size.x / 4)), -2.2f, Random.Range(tile_pos.z - (tile_size.y / 4), tile_pos.z + (tile_size.y / 4)));
                 if (valueTypeOfEnemy < probabilityMeleeEnemies)
                 {
@@ -127,6 +136,21 @@ public class RoomController : MonoBehaviour {
                         shootEnemyController.bullet = Resources.Load("Bullets/Bullet") as GameObject;
                     }
                     instance.SetActive(false);
+                }
+            }
+            #endregion --Place the enemies--
+
+            //Place the mutators
+            float spawnMutationYesOrNo = Random.value;
+            if(spawnMutationYesOrNo >= probabilitySpawnOrNotMutation)
+            {
+                int numberMutators = Random.Range(minMutators, maxMutators);
+                for(int i = 0; i < numberMutators; i++)
+                {
+                    Vector3 newPosition = new Vector3(Random.Range(tile_pos.x - (tile_size.x / 4), tile_pos.x + (tile_size.x / 4)), -2.2f, Random.Range(tile_pos.z - (tile_size.y / 4), tile_pos.z + (tile_size.y / 4)));
+                    GameObject instance = Instantiate(Resources.Load("Mutation") as GameObject);
+                    instance.transform.position = newPosition;
+                    instance.transform.SetParent(candidate.transform);
                 }
             }
         }
@@ -197,7 +221,7 @@ public class RoomController : MonoBehaviour {
 
     public void UpdateAreThereEnemies()
     {
-        bool areEnemies = transform.GetComponentsInChildren<enemyController>().Length != 0;
+        bool areEnemies = transform.GetComponentsInChildren<enemyController>(true).Length != 0;
         if (!room_clear && !areEnemies)
         {
             /* First frame without enemies - maybe we do something */
