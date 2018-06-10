@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114935673300942434}
   - component: {fileID: 114166222486154258}
   - component: {fileID: 114630136773376928}
+  - component: {fileID: 82097989615109390}
   m_Layer: 0
   m_Name: FirstPhaseBoss
   m_TagString: Enemy
@@ -75,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1256690169989284}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 95.711945, y: -19.5, z: 22.241486}
+  m_LocalPosition: {x: 83.512665, y: -19.5, z: 58.826706}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4977644316718672}
@@ -89,13 +90,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708732058754514}
-  m_LocalRotation: {x: 0.5332432, y: 0.5332432, z: -0.4643832, w: 0.4643832}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4560432365492326}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 97.897, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
 --- !u!4 &4977644316718672
 Transform:
   m_ObjectHideFlags: 1
@@ -216,8 +217,88 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2.21, y: 2.27, z: 1.91}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82097989615109390
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256690169989284}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 78b52df65c9b3fb4ebda21c5d37444da, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95401536932790704
 Animator:
   serializedVersion: 3
@@ -281,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f464f182bd9d54f8ef79a06898a00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 100
+  maxLife: 10
   life: 100
   movementSpeed: 4
   attackFrecuency: 1

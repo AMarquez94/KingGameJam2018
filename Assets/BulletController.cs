@@ -19,9 +19,13 @@ public class BulletController : MonoBehaviour {
     private Vector3 lastFramePosition;
     private GameObject sender;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         lastFramePosition = this.transform.position;
+        audioSource.Play();
     }
 
     private void Update()

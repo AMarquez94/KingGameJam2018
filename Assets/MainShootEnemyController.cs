@@ -18,6 +18,8 @@ public class MainShootEnemyController : MonoBehaviour {
 
     private int signRand = 0;
 
+
+
     private void Start()
     {
         enemyCont = GetComponent<enemyController>();
