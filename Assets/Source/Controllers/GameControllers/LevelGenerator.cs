@@ -183,7 +183,7 @@ public class LevelGenerator : MonoBehaviour {
         {
             for (int j = 0; j < grid_objects[i].Count; j++)
             {
-                grid_objects[i][j].GetComponent<RoomController>().InitRoom();
+                grid_objects[i][j].GetComponent<RoomController>().BuildRoom();
 
                 if (grid_objects[i][j] != _start_tile)
                     grid_objects[i][j].SetActive(false);
@@ -223,7 +223,7 @@ public class LevelGenerator : MonoBehaviour {
         // Apply camera transition
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3(door.transform.position.x, transform.position.y - 2.5f, door.transform.position.z);
+        player.transform.position = new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z);
         player.transform.position += (_current_tile.transform.position - door.transform.position).normalized;
         Camera.main.transform.position = _current_tile.transform.position + camera_offset;
     }
@@ -324,11 +324,11 @@ public class LevelGenerator : MonoBehaviour {
             _root_path = _root_path.Except(to_remove).ToList();
         }
 
-        for (int x = 0; x < _root_path.Count; x++)
-        {
-            GameObject start_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            start_point.transform.localPosition = grid_objects[(int)_root_path[x].x][(int)_root_path[x].y].transform.localPosition + new Vector3(0, 5, 0);
-            start_point.GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
+        //for (int x = 0; x < _root_path.Count; x++)
+        //{
+        //    GameObject start_point = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //    start_point.transform.localPosition = grid_objects[(int)_root_path[x].x][(int)_root_path[x].y].transform.localPosition + new Vector3(0, 5, 0);
+        //    start_point.GetComponent<MeshRenderer>().material.color = Color.blue;
+        //}
     }
 }
