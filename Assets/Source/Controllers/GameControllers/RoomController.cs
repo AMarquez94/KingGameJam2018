@@ -171,14 +171,21 @@ public class RoomController : MonoBehaviour {
             if (spawnMutationYesOrNo >= probabilitySpawnOrNotMutation)
             {
                 int numberMutators = Random.Range(minMutators, maxMutators);
-                for (int i = 0; i < numberMutators; i++)
+                int m_i = 0;
+                while (m_i < numberMutators)
                 {
                     int hpos = (int)UnityEngine.Random.Range(0, 10f);
                     int vpos = (int)UnityEngine.Random.Range(0, 8f);
+                    Vector2 d_pos = new Vector2(hpos, vpos);
+                    if (fetch.Contains(d_pos))
+                        continue;
+
+
                     Vector3 newPosition = new Vector3(posx + hpos, 1f, posy + vpos);
                     GameObject instance = Instantiate(Resources.Load("Mutation") as GameObject);
                     instance.transform.position = newPosition;
                     instance.transform.SetParent(root_obstacles.transform);
+                    m_i++;
                 }
             }
         }
