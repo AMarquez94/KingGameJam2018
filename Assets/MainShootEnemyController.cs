@@ -14,6 +14,10 @@ public class MainShootEnemyController : MonoBehaviour {
 
     private float rangeTime = 0.0f;
 
+    private float totalTime = 0.0f;
+
+    private int signRand = 0;
+
     private void Start()
     {
         enemyCont = GetComponent<enemyController>();
@@ -23,9 +27,22 @@ public class MainShootEnemyController : MonoBehaviour {
             Debug.LogWarning("Te has dejau de poner el enemyController crack");
         }
         playerPos = GameControllerManager.getGameControllerManager().getPlayer().transform;
+        if (Random.Range(0f, 1.0f) >= 0.5)
+        {
+            signRand = 1;
+        }
+        else
+        {
+            signRand = -1;
+        }
+        totalTime = Random.Range(0f,10f);
+
     }
 
     void Update () {
+
+        totalTime += Time.deltaTime * signRand;
+        this.transform.position += new Vector3(Mathf.Sin(totalTime), 0, Mathf.Cos(totalTime)) * Time.deltaTime * 0.25f;
         this.transform.LookAt(playerPos.position);
         timerForAttack += Time.deltaTime;
         if(timerForAttack >= enemyCont.attackFrecuency + rangeTime)

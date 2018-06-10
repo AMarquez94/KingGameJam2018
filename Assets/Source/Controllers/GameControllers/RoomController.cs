@@ -68,8 +68,8 @@ public class RoomController : MonoBehaviour {
         else if (levelGenerator.GetBossTile() == this.gameObject)
         {
             /* If boss room */
-            float posx = transform.position.x - 5f;
-            float posy = transform.position.z - 2f;
+            float posx = transform.position.x;
+            float posy = transform.position.z + 3f;
             Vector3 newPosition = new Vector3(posx, 1f, posy);
 
             GameObject instance = Instantiate(Resources.Load("Enemies/FirstPhaseBoss") as GameObject);

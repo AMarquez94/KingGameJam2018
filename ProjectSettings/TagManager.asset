@@ -12,6 +12,7 @@ TagManager:
   - Mutation
   - Enemy
   - Scenario
+  - Obstacle
   layers:
   - Default
   - TransparentFX
