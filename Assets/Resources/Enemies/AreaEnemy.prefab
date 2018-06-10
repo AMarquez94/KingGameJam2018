@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54361665714953168}
   - component: {fileID: 114390809557041986}
   - component: {fileID: 114854933065989032}
-  - component: {fileID: 114139114899399768}
+  - component: {fileID: 114743022816298636}
   m_Layer: 0
   m_Name: AreaEnemy
   m_TagString: Enemy
@@ -204,19 +204,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114139114899399768
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1083605862042796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7505c4aab1c7c94fbe25f9f932fc0a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1422710689084844, guid: 99c273e3beed4c748b49b74ff5146a44, type: 2}
-  factorReduction: 0.5
 --- !u!114 &114390809557041986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +220,19 @@ MonoBehaviour:
   movementSpeed: 0.5
   attackFrecuency: 7
   character_bullet_controller: {fileID: 114854933065989032}
+--- !u!114 &114743022816298636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083605862042796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9894c43b84c2643a0d20548a895ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1422710689084844, guid: 99c273e3beed4c748b49b74ff5146a44, type: 2}
+  playerPos: {fileID: 0}
 --- !u!114 &114854933065989032
 MonoBehaviour:
   m_ObjectHideFlags: 1
