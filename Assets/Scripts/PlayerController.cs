@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
         BLACK_AND_WHITE,
         INVERSED_CONTROLS,
         INVERSED_MOUSE,
+        SPRINT
         //SEE_BLURRED,
         //SLOWPROJS_TONDAMAGE,
         ////HOMMING_BULLETS,
@@ -130,9 +131,18 @@ public class PlayerController : MonoBehaviour {
                 }
             }
 
+
             Vector3 vector_speed_normalized = new Vector3(Mathf.Abs(current_speed_x), 0, Mathf.Abs(current_speed_z));
             vector_speed_normalized.Normalize();
-            transform.position += new Vector3(current_speed_x * vector_speed_normalized.x, 0, current_speed_z * vector_speed_normalized.z) * Time.deltaTime;
+
+            if(Input.GetKey(KeyCode.LeftShift) && myMutation == PossibleMutations.SPRINT)
+            {
+                transform.position += new Vector3(current_speed_x * vector_speed_normalized.x, 0, current_speed_z * vector_speed_normalized.z) * Time.deltaTime * 2f;
+            }
+            else
+            {
+                transform.position += new Vector3(current_speed_x * vector_speed_normalized.x, 0, current_speed_z * vector_speed_normalized.z) * Time.deltaTime;
+            }
             #endregion --Control speed and movement--
 
             #region --Control rotation--
