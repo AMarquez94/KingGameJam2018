@@ -143,12 +143,12 @@ public class RoomController : MonoBehaviour {
                         /* Create a normal distance enemy */
                         shootEnemyController.bullet = Resources.Load("Bullets/Bullet") as GameObject;
                     }
-                    else if (valueTypeOfBulletEnemy >= probabilityNormalDistanceEnemies && valueTypeOfBulletEnemy < probabilityNormalDistanceEnemies + probabilityHomingDistanceEnemies)
+                    else if (valueTypeOfBulletEnemy < probabilityNormalDistanceEnemies + probabilityHomingDistanceEnemies)
                     {
                         /* Create a homing distance enemy */
                         shootEnemyController.bullet = Resources.Load("Bullets/Bullet_Follow") as GameObject;
                     }
-                    else if (valueTypeOfBulletEnemy >= probabilityNormalDistanceEnemies + probabilityHomingDistanceEnemies && valueTypeOfBulletEnemy < probabilityNormalDistanceEnemies + probabilityHomingDistanceEnemies + probabilityThreeDistanceEnemies)
+                    else if (valueTypeOfBulletEnemy < probabilityNormalDistanceEnemies + probabilityHomingDistanceEnemies + probabilityThreeDistanceEnemies)
                     {
                         /* Create a homing distance enemy */
                         shootEnemyController.bullet = Resources.Load("Bullets/Bullet_Triple") as GameObject;
@@ -156,7 +156,7 @@ public class RoomController : MonoBehaviour {
                     else
                     {
                         /* Create an area distance enemy */
-                        shootEnemyController.bullet = Resources.Load("Bullets/Bullet") as GameObject;
+                        shootEnemyController.bullet = Resources.Load("Bullets/Bullet_Area") as GameObject;
                     }
                     instance.SetActive(false);
                 }
