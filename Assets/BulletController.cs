@@ -77,5 +77,10 @@ public class BulletController : MonoBehaviour {
             other.gameObject.GetComponent<enemyController>().ReceiveShot((int)damage);
             Destroy(this.gameObject);
         }
+        else if (other.gameObject.tag == "Obstacle")
+        {
+            /* Hit the an obstacle and destroy the bullet */
+            Destroy(this.gameObject);
+        }
     }
 }
