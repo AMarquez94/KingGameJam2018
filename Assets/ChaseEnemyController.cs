@@ -7,7 +7,6 @@ public class ChaseEnemyController : MonoBehaviour {
 
     public Transform playerPos;
     public enemyController enemyCont;
-    public NavMeshAgent agent;
 
     void Start () {
         enemyCont = GetComponent<enemyController>();
@@ -19,7 +18,7 @@ public class ChaseEnemyController : MonoBehaviour {
     }
 	
 	void Update () {
-        agent.destination = playerPos.position;
+        this.transform.position += (playerPos.position - this.transform.position).normalized * Time.deltaTime * enemyCont.movementSpeed;
 
     }
 }
