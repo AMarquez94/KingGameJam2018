@@ -1187,6 +1187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myState: 0
+  playerName: 
+  probabilityRandomMutator: 0.5
   myMutation: 0
   maxSpeed: 3
   incrSpeed: 0.3

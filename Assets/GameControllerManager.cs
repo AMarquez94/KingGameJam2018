@@ -48,9 +48,32 @@ public class GameControllerManager : MonoBehaviour {
         newRegistry.bulletrange = p_bulletController.range;
 
         registry.Add(newRegistry);
+
         playerRespawns++;
 
         Menu_GamePlay._instance.ChangeState(Menu_GamePlay.GameState.OVER);
+    }
+
+    public void EnemyDied(string name)
+    {
+        if(name == "FirstPhaseBoss(Clone)")
+        {
+            PlayerController p_controller = player.GetComponent<PlayerController>();
+            BulletController p_bulletController = p_controller.bullet.GetComponent<BulletController>();
+            DNARegistry newRegistry = new DNARegistry();
+            newRegistry.name = p_controller.playerName;
+            newRegistry.mutation = p_controller.mutationToString();
+            newRegistry.life = p_controller.life;
+            newRegistry.maxSpeed = p_controller.maxSpeed;
+            newRegistry.cadency = p_controller.cadency;
+            newRegistry.damage = p_bulletController.damage;
+            newRegistry.bulletSpeed = p_bulletController.speed;
+            newRegistry.bulletrange = p_bulletController.range;
+
+            registry.Add(newRegistry);
+            /* End game */
+
+        }
     }
 
     public int getPlayerRespawns()
@@ -112,6 +135,7 @@ public class GameControllerManager : MonoBehaviour {
     void Update()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
         if (player != null)
         {
             if(player.GetComponent<PlayerController>().myState == PlayerController.States.DEAD)

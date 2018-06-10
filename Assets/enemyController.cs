@@ -26,6 +26,7 @@ public class enemyController : MonoBehaviour {
         life = Mathf.Clamp(life - damage, 0, maxLife);
         if(life <= 0)
         {
+            GameControllerManager.getGameControllerManager().EnemyDied(this.gameObject.name);
             Destroy(this.gameObject);
         }
     }

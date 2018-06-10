@@ -102,9 +102,35 @@ public class PlayerController : MonoBehaviour {
         current_life = life;
         int player_respawns = GameControllerManager.getGameControllerManager().getPlayerRespawns();
         playerName = GameControllerManager.getGameControllerManager().getRandomPlayerName();
+
+        int rangeValue = Random.Range(1, 3);
+        GameObject hat = new GameObject();
+        switch (rangeValue)
+        {
+            case 1:
+                hat = Instantiate(Resources.Load("BoxHat") as GameObject);
+                break;
+            case 2:
+                hat = Instantiate(Resources.Load("PyramidHat") as GameObject);
+                break;
+            case 3:
+                hat = Instantiate(Resources.Load("SphereHat") as GameObject);
+                break;
+        }
+        hat.GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.grey);
+        hat.transform.position = this.transform.position + new Vector3(0, 0.75f, 0);
+        hat.transform.SetParent(this.transform);
+
         if (player_respawns > 0)
         {
             RandomMutator();
+            Color finalColor = Color.white;
+            finalColor.r = Random.Range(0f, 1f);
+            finalColor.g = Random.Range(0f, 1f);
+            finalColor.b = Random.Range(0f, 1f);
+            this.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().materials[0].SetColor("_EmissionColor", finalColor);
+            hat.GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", finalColor);
+
         }
     }
 
@@ -112,7 +138,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (Random.value < probabilityRandomMutator)
         {
-            int mutation = Random.Range(1, (int)PossibleMutations.NUMBER_MUTATIONS);
+            int mutation = Random.Range(1, (int)PossibleMutations.NUMBER_MUTATIONS - 1);
             myMutation = (PossibleMutations)mutation;
         }
     }
